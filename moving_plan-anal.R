@@ -242,7 +242,7 @@ contrasts <- list(
   gad = process_contrasts(models$gad, "GAD-7", "continuous"),
   phq = process_contrasts(models$phq, "PHQ-9", "continuous"),
   pcl = process_contrasts(models$pcl, "PCL-5", "continuous"),
-  gender = process_contrasts(models$gender, "Gender Identity", "binary"),
+  gender = process_contrasts(models$gender, "Gender Modality", "binary"),
   income = process_contrasts(models$income, "Income", "multinomial")
 )
 
