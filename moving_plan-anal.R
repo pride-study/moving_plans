@@ -11,7 +11,6 @@
 ###################################################################################################################
 
 # 0. load packages -------------------------------------------------------
-
 library(tidyverse)
 library(here)
 library(psych)
@@ -19,7 +18,6 @@ library(marginaleffects)
 library(tableone)
 
 # 1. import data ---------------------------------------------------------
-
 # list data file names
 aq_files <- c( 
     "FlentjeLast_RRR-002_AQ24_2025-09-20.csv",  
@@ -49,7 +47,6 @@ names(df_race_list) <- c("df24", "df25")
 rm(aq_files, race_files)
 
 # 2. data wrangling ------------------------------------------------------
-
 # left join new race/ethnicity to aq data frames 
 merged_df_list <- map2(df_list, df_race_list, ~left_join(.x, .y, by = "pid"))
 
@@ -174,7 +171,6 @@ omega_results
 rm(mh_scale)
 
 # 4. differences across moving plans and decision groups -----------------
-
 v_names <- df |> 
     select(
         age, race_ethn_new24_1:race_ethn_new24_8, race_mul, race_miss,
@@ -209,7 +205,6 @@ tab1 <- print(
 # )
 
 # 5. post-hoc comparisons ------------------------------------------------
-
 # fit models
 models <- list(
   gad = lm(gad ~ move_plan, data = df),
@@ -237,7 +232,7 @@ process_contrasts <- function(model, outcome_name, outcome_type) {
     select(outcome, outcome_type, everything())
 }
 
-# process all models
+# process all models to get all pairwise contrasts
 contrasts <- list(
   gad = process_contrasts(models$gad, "GAD-7", "continuous"),
   phq = process_contrasts(models$phq, "PHQ-9", "continuous"),
@@ -249,7 +244,7 @@ contrasts <- list(
 # or combine all into one dataframe for easy comparison
 all_results <- bind_rows(contrasts)
 
-# View significant results across all outcomes
+# view significant results across all outcomes
 tab_pair_comp <- all_results |> 
   select(
     outcome, outcome_type, group, contrast, 
