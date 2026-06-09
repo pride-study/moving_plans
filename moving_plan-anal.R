@@ -86,7 +86,6 @@ rm(df_date24, df_list, df_race_list, merged_df_list)
 
 # recode variables
 label_1 <- c("Not at all", "Very little", "Somewhat", "Quite a bit", "A great deal")
-
 df <- df |> 
     mutate(
         gad = rowSums(across(gad1:gad7)), 
