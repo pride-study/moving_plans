@@ -153,14 +153,14 @@ df <- df |>
 rm(label_1)
 
 # 3. measure of reliability ----------------------------------------------
-# Define scales
+# define scales
 mh_scale <- list(
   GAD7 = c("gad1", "gad2", "gad3", "gad4", "gad5", "gad6", "gad7"),
   PHQ9 = c("phq1", "phq2", "phq3", "phq4", "phq5", "phq6", "phq7", "phq8", "phq9"),
   PCL6 = c("pcl1", "pcl2", "pcl3", "pcl4", "pcl5", "pcl6")
 )
 
-# Calculate omega total for each scale
+# calculate omega total for each scale
 omega_results <- map(mh_scale, function(items) {
   tmp <- df |> select(all_of(items))
   omega_obj <- omega(tmp, plot = FALSE)
