@@ -215,8 +215,8 @@ models <- list(
 
 # helper function to estimate pairwise comparison with Bonferroni correction 
 process_contrasts <- function(model, outcome_name, outcome_type) {
-  avg_comparisons(model, variables = list(move_plan = "pairwise")) %>%
-    as.data.frame() %>%
+  avg_comparisons(model, variables = list(move_plan = "pairwise")) |> 
+    as.data.frame() |> 
     mutate(
       outcome = outcome_name,
       outcome_type = outcome_type,
@@ -227,7 +227,7 @@ process_contrasts <- function(model, outcome_name, outcome_type) {
         p.value.bonf < 0.05 ~ "*",
         TRUE ~ "ns"
       )
-    ) %>%
+    ) |> 
     select(outcome, outcome_type, everything())
 }
 
