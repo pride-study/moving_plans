@@ -137,7 +137,7 @@ df <- df |>
             move_plan_1 == 1 & move_plan_2 == 1 ~ 3, 
             con_cntrymove_bin == 0 & con_stmove_bin == 0 ~ 0, 
             T ~ NA
-        ), labels = c("No thoughts","Thoughts but no plan","Planned to move",
+        ), labels = c("No thoughts","Thoughts but no plan","Plans to move",
             "Moved")), 
         across(c(con_stmove, con_cntrymove), ~ factor(.x, levels = 1:5, labels = label_1)),
         # Residence in blue states based on 2024 presidential election 
